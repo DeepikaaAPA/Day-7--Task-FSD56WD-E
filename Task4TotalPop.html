@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Print the total population</title>
+  </head>
+  <body>
+    <script>
+      /*
+        Print the total population of countries using reduce function
+        */
+      var request = new XMLHttpRequest();
+      request.open("GET", "https://restcountries.com/v3.1/all");
+      request.send();
+
+      request.onload = function () {
+        const data = JSON.parse(request.response);
+
+        /*
+        Ques::Print the total population of countries using reduce function
+        
+        
+        */
+
+        let totalPopulation = data.reduce((s, c) => s + c.population, 0);
+        console.log("Total population=" + totalPopulation);
+        /*
+        OP:
+        Total population=7777721563
+        */
+      };
+    </script>
+  </body>
+</html>

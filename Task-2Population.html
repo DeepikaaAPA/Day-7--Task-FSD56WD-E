@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Population</title>
+  </head>
+  <body>
+    <script>
+      /*
+              Get all the countries with a population of less than 2 lakhs using Filter function
+              */
+      var request = new XMLHttpRequest();
+      request.open("GET", "https://restcountries.com/v3.1/all");
+      request.send();
+
+      request.onload = function () {
+        const data = JSON.parse(request.response);
+
+        /*
+              Ques:: countries with a population of less than 2 lakhs
+
+              filter countries that have population of less than 2 lakhs
+
+              */
+
+        let countries = data.filter((e) => e.population < 200000);
+
+        countries.forEach((c, i) =>
+          console.log(
+            `${i + 1}:${c.name.common}  => Population:${c.population}  `
+          )
+        );
+      };
+      /*
+      
+      * OŪTPUt:
+
+         1:Andorra  => Population:77265
+         2:French Southern and Antarctic Lands  => Population:400
+         3:Saint Vincent and the Grenadines  => Population:110947
+         4:Bermuda  => Population:63903
+         5:Dominica  => Population:71991
+         6:United States Virgin Islands  => Population:106290
+         7:Grenada  => Population:112519
+         8:Saint Barthélemy  => Population:4255
+         9:Isle of Man  => Population:85032
+         10:Curaçao  => Population:155014
+         11:Saint Kitts and Nevis  => Population:53192
+         12:United States Minor Outlying Islands  => Population:300
+         13:Marshall Islands  => Population:59194
+         14:Anguilla  => Population:13452
+         15:Cook Islands  => Population:18100
+         16:Norfolk Island  => Population:2302
+         17:Tuvalu  => Population:11792
+         18:South Georgia  => Population:30
+         19:Niue  => Population:1470
+         20:Tonga  => Population:105697
+         21:Saint Helena, Ascension and Tristan da Cunha  => Population:53192
+         22:Gibraltar  => Population:33691
+         23:Northern Mariana Islands  => Population:57557
+         24:British Indian Ocean Territory  => Population:3000
+         25:Kiribati  => Population:119446
+         26:Liechtenstein  => Population:38137
+         27:Antarctica  => Population:1000
+         28:Montserrat  => Population:4922
+         29:Åland Islands  => Population:29458
+         30:Guam  => Population:168783
+         31:Vatican City  => Population:451
+         32:Palau  => Population:18092
+         33:Saint Martin  => Population:38659
+         34:Antigua and Barbuda  => Population:97928
+         35:Sint Maarten  => Population:40812
+         36:Monaco  => Population:39244
+         37:Guernsey  => Population:62999
+         38:Saint Lucia  => Population:183629
+         39:Caribbean Netherlands  => Population:25987
+         40:Pitcairn Islands  => Population:56
+         41:San Marino  => Population:33938
+         42:Svalbard and Jan Mayen  => Population:2562
+         43:Wallis and Futuna  => Population:11750
+         44:Bouvet Island  => Population:0
+         45:Tokelau  => Population:1411
+         46:Cocos (Keeling) Islands  => Population:544
+         47:Greenland  => Population:56367
+         48:Cayman Islands  => Population:65720
+         49:Christmas Island  => Population:2072
+         50:Saint Pierre and Miquelon  => Population:6069
+         51:Micronesia  => Population:115021
+         52:Nauru  => Population:10834
+         53:Faroe Islands  => Population:48865
+         54:Aruba  => Population:106766
+         55:Samoa  => Population:198410
+         56:Heard Island and McDonald Islands  => Population:0
+         57:Falkland Islands  => Population:2563
+         58:Jersey  => Population:100800
+         59:British Virgin Islands  => Population:30237
+         60:Turks and Caicos Islands  => Population:38718
+         61:American Samoa  => Population:55197
+         62:Seychelles  => Population:98462
+             * /
+      
+      */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Asian countries</title>
+  </head>
+  <body>
+    <script>
+      /*
+        Get all the countries from Asia continent /region using Filter function
+        */
+      var request = new XMLHttpRequest();
+      request.open("GET", "https://restcountries.com/v3.1/all");
+      request.send();
+
+      request.onload = function () {
+        const data = JSON.parse(request.response);
+
+        /*
+        Ques:: countries from Asia continent /region
+        
+        filter countries that have region as "Asia"
+        or
+        "Asia" is in the continents property (because for some reason , 
+        the continents property of a country in this data set is an array)
+        
+        */
+        let countries = data.filter(
+          (e) => e.region === "Asia" || e.continents.includes("Asia")
+        );
+
+        countries.forEach((c, i) =>
+          console.log(
+            `${i + 1}:${c.name.common}\n  region:${
+              c.region
+            }  continent:${c.continents.join()}`
+          )
+        );
+
+        /*
+       OUTPUT
+   1:Laos
+  region:Asia  continent:Asia
+   2:Kuwait
+  region:Asia  continent:Asia
+   3:Sri Lanka
+  region:Asia  continent:Asia
+   4:China
+  region:Asia  continent:Asia
+   5:Bangladesh
+  region:Asia  continent:Asia
+   6:Turkey
+  region:Asia  continent:Europe,Asia
+   7:Singapore
+  region:Asia  continent:Asia
+   8:Iraq
+  region:Asia  continent:Asia
+   9:Brunei
+  region:Asia  continent:Asia
+   10:North Korea
+  region:Asia  continent:Asia
+   11:Iran
+  region:Asia  continent:Asia
+   12:Tajikistan
+  region:Asia  continent:Asia
+   13:Myanmar
+  region:Asia  continent:Asia
+   14:Afghanistan
+  region:Asia  continent:Asia
+   15:Cambodia
+  region:Asia  continent:Asia
+   16:India
+  region:Asia  continent:Asia
+   17:Saudi Arabia
+  region:Asia  continent:Asia
+   18:Qatar
+  region:Asia  continent:Asia
+   19:British Indian Ocean Territory
+  region:Africa  continent:Asia
+   20:Syria
+  region:Asia  continent:Asia
+   21:Timor-Leste
+  region:Asia  continent:Oceania
+   22:South Korea
+  region:Asia  continent:Asia
+   23:Maldives
+  region:Asia  continent:Asia
+   24:Kyrgyzstan
+  region:Asia  continent:Asia
+   25:Yemen
+  region:Asia  continent:Asia
+   26:Israel
+  region:Asia  continent:Asia
+   27:Hong Kong
+  region:Asia  continent:Asia
+   28:Bhutan
+  region:Asia  continent:Asia
+   29:Nepal
+  region:Asia  continent:Asia
+   30:United Arab Emirates
+  region:Asia  continent:Asia
+   31:Azerbaijan
+  region:Asia  continent:Europe,Asia
+   32:Palestine
+  region:Asia  continent:Asia
+   33:Taiwan
+  region:Asia  continent:Asia
+   34:Cocos (Keeling) Islands
+  region:Oceania  continent:Asia
+   35:Jordan
+  region:Asia  continent:Asia
+   36:Indonesia
+  region:Asia  continent:Asia
+   37:Lebanon
+  region:Asia  continent:Asia
+   38:Malaysia
+  region:Asia  continent:Asia
+   39:Armenia
+  region:Asia  continent:Asia
+   40:Christmas Island
+  region:Oceania  continent:Asia
+   41:Mongolia
+  region:Asia  continent:Asia
+   42:Japan
+  region:Asia  continent:Asia
+   43:Philippines
+  region:Asia  continent:Asia
+   44:Macau
+  region:Asia  continent:Asia
+   45:Russia
+  region:Europe  continent:Europe,Asia
+   46:Kazakhstan
+  region:Asia  continent:Asia
+   47:Oman
+  region:Asia  continent:Asia
+   48:Turkmenistan
+  region:Asia  continent:Asia
+   49:Georgia
+  region:Asia  continent:Asia
+   50:Thailand
+  region:Asia  continent:Asia
+   51:Bahrain
+  region:Asia  continent:Asia
+   52:Vietnam
+  region:Asia  continent:Asia
+   53:Uzbekistan
+  region:Asia  continent:Asia
+   54:Pakistan
+  region:Asia  continent:Asia
+*/
+      };
+    </script>
+  </body>
+</html>

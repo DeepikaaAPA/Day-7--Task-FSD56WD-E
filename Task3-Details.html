@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Asian countries</title>
+  </head>
+  <body>
+    <script>
+      /*
+        Print the following details name, capital, flag, using forEach function
+        */
+      var request = new XMLHttpRequest();
+      request.open("GET", "https://restcountries.com/v3.1/all");
+      request.send();
+
+      request.onload = function () {
+        const data = JSON.parse(request.response);
+        // console.log(data[0]);
+        /*
+        Ques:: Print the following details 
+        name,
+         capital,
+          flag, using forEach function
+        
+        for some countries capital property was missing 
+        which is handled to display undefined here
+        
+        */
+
+        data.forEach((c, i) =>
+          console.log(
+            `${i + 1}:${c.name.common}\nCapital:${
+              c.capital === undefined ? "undefined" : c.capital.join(",")
+            }   Flag:${c.flag}`
+          )
+        );
+      };
+      /*
+      output
+
+      1:Andorra
+Capital:Andorra la Vella   Flag:🇦🇩
+   2:French Southern and Antarctic Lands
+Capital:Port-aux-Français   Flag:🇹🇫
+   3:Laos
+Capital:Vientiane   Flag:🇱🇦
+   4:Canada
+Capital:Ottawa   Flag:🇨🇦
+   5:Nigeria
+Capital:Abuja   Flag:🇳🇬
+   6:Vanuatu
+Capital:Port Vila   Flag:🇻🇺
+   7:Czechia
+Capital:Prague   Flag:🇨🇿
+   8:Malawi
+Capital:Lilongwe   Flag:🇲🇼
+   9:Mali
+Capital:Bamako   Flag:🇲🇱
+   10:Iceland
+Capital:Reykjavik   Flag:🇮🇸
+   11:Norway
+Capital:Oslo   Flag:🇳🇴
+   12:Saint Vincent and the Grenadines
+Capital:Kingstown   Flag:🇻🇨
+   13:Guadeloupe
+Capital:Basse-Terre   Flag:🇬🇵
+   14:Chile
+Capital:Santiago   Flag:🇨🇱
+   15:Bermuda
+Capital:Hamilton   Flag:🇧🇲
+   16:Kuwait
+Capital:Kuwait City   Flag:🇰🇼
+   17:Dominica
+Capital:Roseau   Flag:🇩🇲
+   18:Montenegro
+Capital:Podgorica   Flag:🇲🇪
+   19:United States Virgin Islands
+Capital:Charlotte Amalie   Flag:🇻🇮
+   20:Cameroon
+Capital:Yaoundé   Flag:🇨🇲
+   21:Sri Lanka
+Capital:Sri Jayawardenepura Kotte   Flag:🇱🇰
+   22:China
+Capital:Beijing   Flag:🇨🇳
+   23:Bangladesh
+Capital:Dhaka   Flag:🇧🇩
+   24:Sweden
+Capital:Stockholm   Flag:🇸🇪
+   25:Grenada
+Capital:St. George's   Flag:🇬🇩
+   26:Turkey
+Capital:Ankara   Flag:🇹🇷
+   27:Guinea
+Capital:Conakry   Flag:🇬🇳
+   28:Tanzania
+Capital:Dodoma   Flag:🇹🇿
+   29:Rwanda
+Capital:Kigali   Flag:🇷🇼
+   30:Singapore
+Capital:Singapore   Flag:🇸🇬
+   31:Morocco
+Capital:Rabat   Flag:🇲🇦
+   32:Saint Barthélemy
+Capital:Gustavia   Flag:🇧🇱
+   33:Iraq
+Capital:Baghdad   Flag:🇮🇶
+   34:Brunei
+Capital:Bandar Seri Begawan   Flag:🇧🇳
+   35:Isle of Man
+Capital:Douglas   Flag:🇮🇲
+   36:North Korea
+Capital:Pyongyang   Flag:🇰🇵
+   37:Iran
+Capital:Tehran   Flag:🇮🇷
+   38:Curaçao
+Capital:Willemstad   Flag:🇨🇼
+   39:Paraguay
+Capital:Asunción   Flag:🇵🇾
+   40:Albania
+Capital:Tirana   Flag:🇦🇱
+   41:Tajikistan
+Capital:Dushanbe   Flag:🇹🇯
+   42:Bolivia
+Capital:Sucre   Flag:🇧🇴
+   43:Austria
+Capital:Vienna   Flag:🇦🇹
+   44:Saint Kitts and Nevis
+Capital:Basseterre   Flag:🇰🇳
+   45:United States Minor Outlying Islands
+Capital:Washington DC   Flag:🇺🇲
+   46:Colombia
+Capital:Bogotá   Flag:🇨🇴
+   47:Kosovo
+Capital:Pristina   Flag:🇽🇰
+   48:Belize
+Capital:Belmopan   Flag:🇧🇿
+   49:Guinea-Bissau
+Capital:Bissau   Flag:🇬🇼
+   50:Marshall Islands
+Capital:Majuro   Flag:🇲🇭
+   51:Myanmar
+Capital:Naypyidaw   Flag:🇲🇲
+   52:French Polynesia
+Capital:Papeetē   Flag:🇵🇫
+   53:Brazil
+Capital:Brasília   Flag:🇧🇷
+   54:Croatia
+Capital:Zagreb   Flag:🇭🇷
+   55:Somalia
+Capital:Mogadishu   Flag:🇸🇴
+   56:Afghanistan
+Capital:Kabul   Flag:🇦🇫
+   57:Anguilla
+Capital:The Valley   Flag:🇦🇮
+   58:Cook Islands
+Capital:Avarua   Flag:🇨🇰
+   59:Western Sahara
+Capital:El Aaiún   Flag:🇪🇭
+   60:New Zealand
+Capital:Wellington   Flag:🇳🇿
+   61:Eritrea
+Capital:Asmara   Flag:🇪🇷
+   62:Cambodia
+Capital:Phnom Penh   Flag:🇰🇭
+   63:Bahamas
+Capital:Nassau   Flag:🇧🇸
+   64:Belarus
+Capital:Minsk   Flag:🇧🇾
+   65:Norfolk Island
+Capital:Kingston   Flag:🇳🇫
+   66:Tuvalu
+Capital:Funafuti   Flag:🇹🇻
+   67:South Georgia
+Capital:King Edward Point   Flag:🇬🇸
+   68:Mauritania
+Capital:Nouakchott   Flag:🇲🇷
+   69:New Caledonia
+Capital:Nouméa   Flag:🇳🇨
+   70:Bulgaria
+Capital:Sofia   Flag:🇧🇬
+   71:Mozambique
+Capital:Maputo   Flag:🇲🇿
+   72:Niue
+Capital:Alofi   Flag:🇳🇺
+   73:Estonia
+Capital:Tallinn   Flag:🇪🇪
+   74:Italy
+Capital:Rome   Flag:🇮🇹
+   75:Malta
+Capital:Valletta   Flag:🇲🇹
+   76:Slovenia
+Capital:Ljubljana   Flag:🇸🇮
+   77:India
+Capital:New Delhi   Flag:🇮🇳
+   78:Peru
+Capital:Lima   Flag:🇵🇪
+   79:Burundi
+Capital:Gitega   Flag:🇧🇮
+   80:Lithuania
+Capital:Vilnius   Flag:🇱🇹
+   81:United States
+Capital:Washington, D.C.   Flag:🇺🇸
+   82:Honduras
+Capital:Tegucigalpa   Flag:🇭🇳
+   83:Tonga
+Capital:Nuku'alofa   Flag:🇹🇴
+   84:Saudi Arabia
+Capital:Riyadh   Flag:🇸🇦
+   85:Suriname
+Capital:Paramaribo   Flag:🇸🇷
+   86:Qatar
+Capital:Doha   Flag:🇶🇦
+   87:Saint Helena, Ascension and Tristan da Cunha
+Capital:Jamestown   Flag:🇸🇭
+   88:Gibraltar
+Capital:Gibraltar   Flag:🇬🇮
+   89:Northern Mariana Islands
+Capital:Saipan   Flag:🇲🇵
+   90:Mauritius
+Capital:Port Louis   Flag:🇲🇺
+   91:Barbados
+Capital:Bridgetown   Flag:🇧🇧
+   92:Réunion
+Capital:Saint-Denis   Flag:🇷🇪
+   93:British Indian Ocean Territory
+Capital:Diego Garcia   Flag:🇮🇴
+   94:Syria
+Capital:Damascus   Flag:🇸🇾
+   95:Egypt
+Capital:Cairo   Flag:🇪🇬
+   96:São Tomé and Príncipe
+Capital:São Tomé   Flag:🇸🇹
+   97:Kiribati
+Capital:South Tarawa   Flag:🇰🇮
+   98:Timor-Leste
+Capital:Dili   Flag:🇹🇱
+   99:Lesotho
+Capital:Maseru   Flag:🇱🇸
+   100:Solomon Islands
+Capital:Honiara   Flag:🇸🇧
+   101:Libya
+Capital:Tripoli   Flag:🇱🇾
+   102:South Korea
+Capital:Seoul   Flag:🇰🇷
+   103:Liechtenstein
+Capital:Vaduz   Flag:🇱🇮
+   104:Nicaragua
+Capital:Managua   Flag:🇳🇮
+   105:Ecuador
+Capital:Quito   Flag:🇪🇨
+   106:Maldives
+Capital:Malé   Flag:🇲🇻
+   107:Algeria
+Capital:Algiers   Flag:🇩🇿
+   108:Kyrgyzstan
+Capital:Bishkek   Flag:🇰🇬
+   109:Finland
+Capital:Helsinki   Flag:🇫🇮
+   110:Antarctica
+Capital:undefined   Flag:🇦🇶
+   111:Kenya
+Capital:Nairobi   Flag:🇰🇪
+   112:Cuba
+Capital:Havana   Flag:🇨🇺
+   113:Montserrat
+Capital:Plymouth   Flag:🇲🇸
+   114:Poland
+Capital:Warsaw   Flag:🇵🇱
+   115:Åland Islands
+Capital:Mariehamn   Flag:🇦🇽
+   116:Ethiopia
+Capital:Addis Ababa   Flag:🇪🇹
+   117:Togo
+Capital:Lomé   Flag:🇹🇬
+   118:Bosnia and Herzegovina
+Capital:Sarajevo   Flag:🇧🇦
+   119:Uruguay
+Capital:Montevideo   Flag:🇺🇾
+   120:Guam
+Capital:Hagåtña   Flag:🇬🇺
+   121:Cape Verde
+Capital:Praia   Flag:🇨🇻
+   122:Chad
+Capital:N'Djamena   Flag:🇹🇩
+   123:Vatican City
+Capital:Vatican City   Flag:🇻🇦
+   124:Palau
+Capital:Ngerulmud   Flag:🇵🇼
+   125:Haiti
+Capital:Port-au-Prince   Flag:🇭🇹
+   126:Yemen
+Capital:Sana'a   Flag:🇾🇪
+   127:Eswatini
+Capital:Mbabane   Flag:🇸🇿
+   128:Zimbabwe
+Capital:Harare   Flag:🇿🇼
+   129:Greece
+Capital:Athens   Flag:🇬🇷
+   130:Israel
+Capital:Jerusalem   Flag:🇮🇱
+   131:Saint Martin
+Capital:Marigot   Flag:🇲🇫
+   132:Antigua and Barbuda
+Capital:Saint John's   Flag:🇦🇬
+   133:Cyprus
+Capital:Nicosia   Flag:🇨🇾
+   134:Sint Maarten
+Capital:Philipsburg   Flag:🇸🇽
+   135:Monaco
+Capital:Monaco   Flag:🇲🇨
+   136:Fiji
+Capital:Suva   Flag:🇫🇯
+   137:Ukraine
+Capital:Kyiv   Flag:🇺🇦
+   138:Martinique
+Capital:Fort-de-France   Flag:🇲🇶
+   139:Hong Kong
+Capital:City of Victoria   Flag:🇭🇰
+   140:Portugal
+Capital:Lisbon   Flag:🇵🇹
+   141:Bhutan
+Capital:Thimphu   Flag:🇧🇹
+   142:Nepal
+Capital:Kathmandu   Flag:🇳🇵
+   143:France
+Capital:Paris   Flag:🇫🇷
+   144:Ireland
+Capital:Dublin   Flag:🇮🇪
+   145:United Arab Emirates
+Capital:Abu Dhabi   Flag:🇦🇪
+   146:Guernsey
+Capital:St. Peter Port   Flag:🇬🇬
+   147:Saint Lucia
+Capital:Castries   Flag:🇱🇨
+   148:Dominican Republic
+Capital:Santo Domingo   Flag:🇩🇴
+   149:Serbia
+Capital:Belgrade   Flag:🇷🇸
+   150:Botswana
+Capital:Gaborone   Flag:🇧🇼
+   151:Ivory Coast
+Capital:Yamoussoukro   Flag:🇨🇮
+   152:Ghana
+Capital:Accra   Flag:🇬🇭
+   153:Comoros
+Capital:Moroni   Flag:🇰🇲
+   154:Azerbaijan
+Capital:Baku   Flag:🇦🇿
+   155:United Kingdom
+Capital:London   Flag:🇬🇧
+   156:Central African Republic
+Capital:Bangui   Flag:🇨🇫
+   157:Palestine
+Capital:Ramallah,Jerusalem   Flag:🇵🇸
+   158:Caribbean Netherlands
+Capital:Kralendijk   Flag:🇧🇶
+   159:Taiwan
+Capital:Taipei   Flag:🇹🇼
+   160:Pitcairn Islands
+Capital:Adamstown   Flag:🇵🇳
+   161:San Marino
+Capital:City of San Marino   Flag:🇸🇲
+   162:Svalbard and Jan Mayen
+Capital:Longyearbyen   Flag:🇸🇯
+   163:Djibouti
+Capital:Djibouti   Flag:🇩🇯
+   164:Wallis and Futuna
+Capital:Mata-Utu   Flag:🇼🇫
+   165:Denmark
+Capital:Copenhagen   Flag:🇩🇰
+   166:Papua New Guinea
+Capital:Port Moresby   Flag:🇵🇬
+   167:Madagascar
+Capital:Antananarivo   Flag:🇲🇬
+   168:Bouvet Island
+Capital:undefined   Flag:🇧🇻
+   169:Hungary
+Capital:Budapest   Flag:🇭🇺
+   170:Tokelau
+Capital:Fakaofo   Flag:🇹🇰
+   171:Trinidad and Tobago
+Capital:Port of Spain   Flag:🇹🇹
+   172:Gambia
+Capital:Banjul   Flag:🇬🇲
+   173:Luxembourg
+Capital:Luxembourg   Flag:🇱🇺
+   174:Cocos (Keeling) Islands
+Capital:West Island   Flag:🇨🇨
+   175:Republic of the Congo
+Capital:Brazzaville   Flag:🇨🇬
+   176:Argentina
+Capital:Buenos Aires   Flag:🇦🇷
+   177:DR Congo
+Capital:Kinshasa   Flag:🇨🇩
+   178:Greenland
+Capital:Nuuk   Flag:🇬🇱
+   179:Jordan
+Capital:Amman   Flag:🇯🇴
+   180:Belgium
+Capital:Brussels   Flag:🇧🇪
+   181:Switzerland
+Capital:Bern   Flag:🇨🇭
+   182:Indonesia
+Capital:Jakarta   Flag:🇮🇩
+   183:Lebanon
+Capital:Beirut   Flag:🇱🇧
+   184:Malaysia
+Capital:Kuala Lumpur   Flag:🇲🇾
+   185:Cayman Islands
+Capital:George Town   Flag:🇰🇾
+   186:Slovakia
+Capital:Bratislava   Flag:🇸🇰
+   187:Armenia
+Capital:Yerevan   Flag:🇦🇲
+   188:Christmas Island
+Capital:Flying Fish Cove   Flag:🇨🇽
+   189:Mongolia
+Capital:Ulan Bator   Flag:🇲🇳
+   190:Saint Pierre and Miquelon
+Capital:Saint-Pierre   Flag:🇵🇲
+   191:Japan
+Capital:Tokyo   Flag:🇯🇵
+   192:South Africa
+Capital:Pretoria,Bloemfontein,Cape Town   Flag:🇿🇦
+   193:Philippines
+Capital:Manila   Flag:🇵🇭
+   194:Micronesia
+Capital:Palikir   Flag:🇫🇲
+   195:Germany
+Capital:Berlin   Flag:🇩🇪
+   196:Latvia
+Capital:Riga   Flag:🇱🇻
+   197:Jamaica
+Capital:Kingston   Flag:🇯🇲
+   198:Macau
+Capital:undefined   Flag:🇲🇴
+   199:Nauru
+Capital:Yaren   Flag:🇳🇷
+   200:Faroe Islands
+Capital:Tórshavn   Flag:🇫🇴
+   201:Guyana
+Capital:Georgetown   Flag:🇬🇾
+   202:Burkina Faso
+Capital:Ouagadougou   Flag:🇧🇫
+   203:Sudan
+Capital:Khartoum   Flag:🇸🇩
+   204:Russia
+Capital:Moscow   Flag:🇷🇺
+   205:Mayotte
+Capital:Mamoudzou   Flag:🇾🇹
+   206:Australia
+Capital:Canberra   Flag:🇦🇺
+   207:Liberia
+Capital:Monrovia   Flag:🇱🇷
+   208:Mexico
+Capital:Mexico City   Flag:🇲🇽
+   209:Tunisia
+Capital:Tunis   Flag:🇹🇳
+   210:Aruba
+Capital:Oranjestad   Flag:🇦🇼
+   211:Kazakhstan
+Capital:Nur-Sultan   Flag:🇰🇿
+   212:Oman
+Capital:Muscat   Flag:🇴🇲
+   213:French Guiana
+Capital:Cayenne   Flag:🇬🇫
+   214:Niger
+Capital:Niamey   Flag:🇳🇪
+   215:Turkmenistan
+Capital:Ashgabat   Flag:🇹🇲
+   216:Sierra Leone
+Capital:Freetown   Flag:🇸🇱
+   217:Samoa
+Capital:Apia   Flag:🇼🇸
+   218:Senegal
+Capital:Dakar   Flag:🇸🇳
+   219:Georgia
+Capital:Tbilisi   Flag:🇬🇪
+   220:Namibia
+Capital:Windhoek   Flag:🇳🇦
+   221:South Sudan
+Capital:Juba   Flag:🇸🇸
+   222:Thailand
+Capital:Bangkok   Flag:🇹🇭
+   223:Bahrain
+Capital:Manama   Flag:🇧🇭
+   224:Heard Island and McDonald Islands
+Capital:undefined   Flag:🇭🇲
+   225:Falkland Islands
+Capital:Stanley   Flag:🇫🇰
+   226:Jersey
+Capital:Saint Helier   Flag:🇯🇪
+   227:Vietnam
+Capital:Hanoi   Flag:🇻🇳
+   228:Guatemala
+Capital:Guatemala City   Flag:🇬🇹
+   229:Moldova
+Capital:Chișinău   Flag:🇲🇩
+   230:North Macedonia
+Capital:Skopje   Flag:🇲🇰
+   231:Uzbekistan
+Capital:Tashkent   Flag:🇺🇿
+   232:Romania
+Capital:Bucharest   Flag:🇷🇴
+   233:Uganda
+Capital:Kampala   Flag:🇺🇬
+   234:El Salvador
+Capital:San Salvador   Flag:🇸🇻
+   235:Zambia
+Capital:Lusaka   Flag:🇿🇲
+   236:Gabon
+Capital:Libreville   Flag:🇬🇦
+   237:Equatorial Guinea
+Capital:Malabo   Flag:🇬🇶
+   238:Spain
+Capital:Madrid   Flag:🇪🇸
+   239:Netherlands
+Capital:Amsterdam   Flag:🇳🇱
+   240:British Virgin Islands
+Capital:Road Town   Flag:🇻🇬
+   241:Benin
+Capital:Porto-Novo   Flag:🇧🇯
+   242:Pakistan
+Capital:Islamabad   Flag:🇵🇰
+   243:Panama
+Capital:Panama City   Flag:🇵🇦
+   244:Turks and Caicos Islands
+Capital:Cockburn Town   Flag:🇹🇨
+   245:Angola
+Capital:Luanda   Flag:🇦🇴
+   246:American Samoa
+Capital:Pago Pago   Flag:🇦🇸
+   247:Venezuela
+Capital:Caracas   Flag:🇻🇪
+   248:Costa Rica
+Capital:San José   Flag:🇨🇷
+   249:Puerto Rico
+Capital:San Juan   Flag:🇵🇷
+   250:Seychelles
+Capital:Victoria   Flag:🇸🇨
+      
+      */
+    </script>
+  </body>
+</html>

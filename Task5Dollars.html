@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Print the country that uses US dollars as currency.</title>
+  </head>
+  <body>
+    <script>
+      var request = new XMLHttpRequest();
+      request.open("GET", "https://restcountries.com/v3.1/all");
+      request.send();
+
+      request.onload = function () {
+        const data = JSON.parse(request.response);
+
+        /*
+        Ques::Print the country that uses US dollars as currency.
+
+
+        */
+
+        data
+          .filter((c, i) => {
+            return c.currencies /* for some countries courrency property has not been defined! so check if the property exists*/
+              ? Object.values(
+                  c.currencies
+                ) /* currencies property has an object as value */
+                  .map(
+                    ({ name, symbol }) => name
+                  ) /*the key is custom for each country depends on the currency name, getting the key-name's values as objects array */
+                  .includes(
+                    "United States dollar"
+                  ) /* see if usd is in the array of currencies */
+              : false; /* return false if currencies is null or undefined*/
+          })
+          .forEach((e, i) =>
+            console.log(
+              `${i + 1} : ${e.name.common} ----Currencies: ${Object.keys(
+                e.currencies
+              ).join()}`
+            )
+          ); /* Printing the name of countries with index count*/
+        /*
+          Output:
+     1 : United States Virgin Islands ----Currencies: USD
+     2 : United States Minor Outlying Islands ----Currencies: USD
+     3 : Marshall Islands ----Currencies: USD
+     4 : Cambodia ----Currencies: KHR,USD
+     5 : Bahamas ----Currencies: BSD,USD
+     6 : United States ----Currencies: USD
+     7 : Northern Mariana Islands ----Currencies: USD
+     8 : British Indian Ocean Territory ----Currencies: USD
+     9 : Timor-Leste ----Currencies: USD
+     10 : Ecuador ----Currencies: USD
+     11 : Guam ----Currencies: USD
+     12 : Palau ----Currencies: USD
+     13 : Caribbean Netherlands ----Currencies: USD
+     14 : Micronesia ----Currencies: USD
+     15 : El Salvador ----Currencies: USD
+     16 : British Virgin Islands ----Currencies: USD
+     17 : Panama ----Currencies: PAB,USD
+     18 : Turks and Caicos Islands ----Currencies: USD
+     19 : American Samoa ----Currencies: USD
+     20 : Puerto Rico ----Currencies: USD
+          
+          */
+
+        /**************Personal notes**************/
+        /*
+          
+          
+          
+        // let dollarCountries = data.filter((c, i) => {
+        //   let currencyObjArray = [];
+        //   if (c.currencies) {
+        //     currencyObjArray = Object.values(c.currencies).map((e) => e.name);
+        //   }
+        //   return currencyObjArray.includes("United States dollar");
+        // });
+
+        // dollarCountries.forEach((e, i) =>
+        //   console.log(`${i + 1} : ${e.name.common}`)
+        // );
+        
+          
+          
+          */
+      };
+    </script>
+  </body>
+</html>
